@@ -165,6 +165,7 @@ export const COURSES: any = {
 
 export const LESSONS = {
 
+  // Angular for Beginners course
   1: {
     id: 1,
     'description': 'Angular Tutorial For Beginners - Build Your First App - Hello World Step By Step',

@@ -5,7 +5,7 @@ import { COURSES, findLessonsForCourse } from '../../../../server/db-data';
 import { Course } from '../model/course';
 import { HttpErrorResponse } from '@angular/common/http';
 
-describe('CourseService', () => {
+describe('CoursesService', () => {
 
   let coursesService: CoursesService;
   let httpTestingController: HttpTestingController;
@@ -34,7 +34,8 @@ describe('CourseService', () => {
           expect(courses.length).toBe(12,
             'incorrect number of courses');
 
-          const course = courses.find(a_course => a_course.id === 12);
+          // tslint:disable-next-line: no-shadowed-variable
+          const course = courses.find(course => course.id === 12);
 
           expect(course.titles.description).toBe(
               'Angular Testing Course');
@@ -131,7 +132,6 @@ describe('CourseService', () => {
         req => req.url === '/api/lessons');
 
       expect(req.request.method).toEqual('GET');
-
       expect(req.request.params.get('courseId')).toEqual('12');
       expect(req.request.params.get('filter')).toEqual('');
       expect(req.request.params.get('sortOrder')).toEqual('asc');

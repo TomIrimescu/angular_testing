@@ -12,6 +12,7 @@ describe('CoursesCardListComponent', () => {
 
   let component: CoursesCardListComponent;
   let fixture: ComponentFixture<CoursesCardListComponent>;
+  let el: DebugElement;
 
   beforeEach(async( () => {
 
@@ -23,6 +24,7 @@ describe('CoursesCardListComponent', () => {
 
         fixture = TestBed.createComponent(CoursesCardListComponent);
         component = fixture.componentInstance;
+        el = fixture.debugElement;
 
       });
 
@@ -38,14 +40,37 @@ describe('CoursesCardListComponent', () => {
 
   it('should display the course list', () => {
 
-    pending();
+    component.courses = setupCourses();
+
+    fixture.detectChanges();
+
+    // console.log(el.nativeElement.outerHTML);
+
+    const cards = el.queryAll(By.css('.course-card'));
+
+    expect(cards).toBeTruthy('Could not find cards');
+    expect(cards.length).toBe(12, 'Unexpected number of courses');
 
   });
 
 
   it('should display the first course', () => {
 
-      pending();
+    component.courses = setupCourses();
+
+    fixture.detectChanges();
+
+    const course = component.courses[0];
+
+    const card = el.query(By.css('.course-card:first-child'));
+    const title = el.query(By.css('mat-card-title'));
+    const image = el.query(By.css('img'));
+
+    expect(card).toBeTruthy('Could not find course card');
+
+    expect(title.nativeElement.textContent).toBe(course.titles.description);
+
+    expect(image.nativeElement.src).toBe(course.iconUrl);
 
   });
 

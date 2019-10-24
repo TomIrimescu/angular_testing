@@ -18,14 +18,11 @@ describe('CoursesCardListComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [CoursesModule]
-    })
-      .compileComponents()
+    }).compileComponents()
       .then(() => {
-
         fixture = TestBed.createComponent(CoursesCardListComponent);
         component = fixture.componentInstance;
         el = fixture.debugElement;
-
       });
 
  }) );
